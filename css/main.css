@@ -21,17 +21,16 @@
     font-family: "JetBrains Mono", monospace;
     vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+
+header, nav {
     display: block;
 }
+
 body {
     line-height: 1;
     height: 100vh;
-}
-ol, ul {
-	list-style: none;
 }
 
 
@@ -44,13 +43,17 @@ header {
 }
 
 nav {
-    margin: 20px 20px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 15px 20px;
 }
 
 a {
     color: #555;
     text-decoration: none;
     transition: color 0.15s;
+    margin-left: 20px;
 }
 
 a:hover {
@@ -66,7 +69,7 @@ a:hover {
 h1 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 p {
@@ -80,4 +83,15 @@ p {
     header {
       background-color: #fff;
     }
-  }
+}
+
+/*
+
+   |\      _,,,---,,_
+   /,`.-'`'    -.  ;-;;,_
+  |,4-  ) )-,_..;\ (  `'-'
+ '---''(_/--'  `-'\_)  
+
+    credit: Felix Lee
+
+*/

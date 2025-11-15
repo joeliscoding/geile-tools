@@ -34,24 +34,16 @@ body {
 }
 
 
-/* variables */
+/* import variables */
 
-:root {
-    /* lightmode colors */
-    --lightmode-primary-color: #ffffff;
-    --lightmode-secondary-color: #f8f8f8;
-    --lightmode-primary-text-color: #000000;
-    --lightmode-secondary-text-color: #6f6f6f;
-
-    /* darkmode colors */
-    --darkmode-primary-color: #000000;
-    --darkmode-secondary-color: #0c0c0c;
-    --darkmode-primary-text-color: #ffffff;
-    --darkmode-secondary-text-color: #bbbbbb;
-}
+@import url('./variables.module.css');
 
 
 /* global styles */
+
+* {
+    text-transform: lowercase;
+}
 
 body {
     background-color: var(--lightmode-primary-color);
@@ -64,7 +56,7 @@ header {
 }
 
 h1, h2, h3, h4, h5, h6, .container > p {
-    color: var(--primary-dark-color);
+    color: var(--lightmode-primary-text-color);
 }
 
 .main-layout {
@@ -79,7 +71,6 @@ h1, h2, h3, h4, h5, h6, .container > p {
     background-color: var(--lightmode-secondary-color);
     left: 0;
     top: 0;
-    border-radius: 0 20px 20px 0;
 }
 
 .top-links {
@@ -153,6 +144,18 @@ p {
     line-height: 1.3;
 }
 
+button {
+    color: var(--lightmode-primary-color);
+    padding: 10px 20px;
+    background-color: var(--lightmode-secondary-text-color);
+    transition: background-color 0.15s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--lightmode-primary-text-color);
+}
+
 .mobile-back-button {
     display: none;
     align-items: center;
@@ -183,11 +186,18 @@ p {
     body {
         background-color: var(--darkmode-primary-color);
     }
-    h1, h2, h3, h4, h5, h6, .container > p {
+    h1, h2, h3, h4, h5, h6, .container > p, button {
         color: var(--darkmode-primary-text-color);
     }
     .navigation-bar {
         background-color: var(--darkmode-secondary-color);
+    }
+    button {
+        color: var(--darkmode-primary-color);
+        background-color: var(--darkmode-secondary-text-color);
+    }
+    button:hover {
+        background-color: var(--darkmode-primary-text-color);
     }
 
     nav a {
@@ -222,7 +232,6 @@ p {
         top: auto;
         display: flex;
         justify-content: center;
-        border-radius: 20px 20px 0 0;
     }
     nav {
         display: flex;

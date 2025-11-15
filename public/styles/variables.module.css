@@ -1,0 +1,15 @@
+/* variables */
+
+:root {
+    /* lightmode colors */
+    --lightmode-primary-color: #ffffff;
+    --lightmode-secondary-color: #f8f8f8;
+    --lightmode-primary-text-color: #000000;
+    --lightmode-secondary-text-color: #6f6f6f;
+
+    /* darkmode colors */
+    --darkmode-primary-color: #000000;
+    --darkmode-secondary-color: #0c0c0c;
+    --darkmode-primary-text-color: #ffffff;
+    --darkmode-secondary-text-color: #bbbbbb;
+}

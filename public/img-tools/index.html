@@ -2,14 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>about / geile.tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img.tools / geile.tools</title>
 
     <link rel="icon" type="image/x-icon" href="/img/icons/favicon.png">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/variables.module.css">
     <style>
-        .container p {
-            text-align: justify;
+        @import url('/styles/variables.module.css');
+
+        p {
+            text-align: center;
+        }
+
+        #src-img-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 9;
+            width: 75vw;
+            max-width: 700px;
+            height: auto;
+            background-color: var(--lightmode-secondary-color);
+        }
+
+        #src-img {
+            display: none;
+            margin-bottom: 1rem;
+            width: 75vw;
+            max-width: 700px;
+            height: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+
+        /* dark mode */
+
+        @media (prefers-color-scheme: dark) {
+            #src-img-container {
+                background-color: var(--darkmode-secondary-color);
+            }
         }
     </style>
 </head>
@@ -35,9 +73,9 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-icon lucide-share"><path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></svg>
                         <p>drop</p>
                     </a>
-                    <a href="/metadata-cleaner">
+                    <a href="/img-tools">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image-icon lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                        <p>metadata</p>
+                        <p>img.tools</p>
                     </a>
                 </div>
 
@@ -58,12 +96,18 @@
         <div class="container">
 
             <!-- content -->
-            <h1>about</h1>
-            <p>geile.tools is an open-source project offering a variety of useful tools designed to simplify everyday tasks. It is created for public benefit — providing reliable and accessible tools for everyone.</p>
 
+            <h1>img.tools</h1>
+
+            <div id="src-img-container">
+                <form method="dialog" enctype="multipart/form-data" onsubmit="fileUpload()">
+                    <button>select image</button>
+                </form>
+            </div>
+            <img id="src-img">
         </div>
 
-
+        <script src="./img-tools.js"></script>
     </div>
 </body>
 </html>

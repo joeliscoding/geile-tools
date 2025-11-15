@@ -1,4 +1,4 @@
-const socket = new WebSocket(`ws://${window.location.hostname}:8443`);
+const socket = new WebSocket(`ws://${window.location.hostname}:443`);
 
 socket.onmessage = ({ data }) => {
     console.log(`Received message from server: ${data}`);

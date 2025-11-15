@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const server = new WebSocket.Server({ port: 8443 });
+const server = new WebSocket.Server({ port: 443 });
 
 server.on('connection', socket => {
     console.log('Client connected');
@@ -21,8 +21,8 @@ const app = express();
 
 app.use(express.json());
 
-app.listen(8443, () => {
-    console.log('Server listening on port 8443');
+app.listen(443, () => {
+    console.log('Server listening on port 443');
 });
 
 app.get('/', (req, res) => {

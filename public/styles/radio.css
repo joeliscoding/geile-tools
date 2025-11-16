@@ -1,0 +1,64 @@
+.radio-element {
+    display: flex;
+}
+
+.radio-element input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--lightmode-primary-color);
+    color: var(--lightmode-primary-text-color);
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid currentColor;
+    border-radius: 0;
+    margin: 10px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-element input[type="radio"]::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 0;
+    transform: scale(0);
+    transition: transform 0.15s ease-in-out;
+    box-shadow: inset 1em 1em var(--lightmode-primary-text-color);
+}
+
+.radio-element input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+.radio-element input[type="radio"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.radio-element input[type="radio"]:disabled + label {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.radio-element label {
+    font-size: 1em;
+    margin: 10px 0;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+
+/* dark mode */
+
+@media (prefers-color-scheme: dark) {
+    .radio-element input[type="radio"] {
+        background-color: var(--darkmode-primary-color);
+        color: var(--darkmode-primary-text-color);
+    }
+
+    .radio-element input[type="radio"]::before {
+        box-shadow: inset 1em 1em var(--darkmode-primary-text-color);
+    }
+}

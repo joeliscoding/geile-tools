@@ -7,49 +7,9 @@
 
     <link rel="icon" type="image/x-icon" href="/img/icons/favicon.png">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/img-tools/img-tools.css">
+    <link rel="stylesheet" href="/styles/radio.css">
     <link rel="stylesheet" href="/styles/variables.module.css">
-    <style>
-        @import url('/styles/variables.module.css');
-
-        p {
-            text-align: center;
-        }
-
-        #src-img-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            aspect-ratio: 16 / 9;
-            width: 75vw;
-            max-width: 700px;
-            height: auto;
-            background-color: var(--lightmode-secondary-color);
-        }
-
-        #src-img {
-            display: none;
-            margin-bottom: 1rem;
-            width: 75vw;
-            max-width: 700px;
-            height: auto;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-
-        /* dark mode */
-
-        @media (prefers-color-scheme: dark) {
-            #src-img-container {
-                background-color: var(--darkmode-secondary-color);
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="main-layout">
@@ -97,14 +57,35 @@
 
             <!-- content -->
 
-            <h1>img.tools</h1>
+            <div class="wrapper">
 
-            <div id="src-img-container">
-                <form method="dialog" enctype="multipart/form-data" onsubmit="fileUpload()">
-                    <button>select image</button>
-                </form>
+                <div class="centered">
+                    <h1>img.tools</h1>
+
+                    <div id="src-img-container">
+                        <form method="dialog" enctype="multipart/form-data" onsubmit="fileUpload()">
+                            <button>select image</button>
+                        </form>
+                    </div>
+                    <canvas id="img-canvas"></canvas>
+                </div>
+
+                <div id="tool-form-container">
+                    <form id="tools-form">
+                        <div id="placeholder" class="radio-element">
+                            <input type="radio" id="1" name="action" disabled>
+                            <label for="1" class="input-label">upload an image</label>
+                        </div>
+
+                        <div id="download-options">
+                            <button id="download-button">download</button>
+                            <button id="reset-button">reset</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-            <img id="src-img">
+
         </div>
 
         <script src="./img-tools.js"></script>

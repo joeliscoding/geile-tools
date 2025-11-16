@@ -1,0 +1,60 @@
+@import url('/styles/variables.module.css');
+
+p {
+    text-align: center;
+}
+
+.wrapper {
+    width: 75vw;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#src-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    width: 75vw;
+    max-width: 700px;
+    height: auto;
+    background-color: var(--lightmode-secondary-color);
+}
+
+#img-canvas {
+    display: none;
+    box-sizing: border-box;
+    border: 1px solid var(--lightmode-primary-text-color);
+    width: 75vw;
+    max-width: 700px;
+    height: auto;
+}
+
+#tool-form-container {
+    margin: 25px 0;
+}
+
+#download-options {
+    display: none;
+    justify-content: space-between;
+}
+
+
+/* dark mode */
+
+@media (prefers-color-scheme: dark) {
+    #src-img-container {
+        background-color: var(--darkmode-secondary-color);
+    }
+
+    #img-canvas {
+        border: 1px solid var(--darkmode-primary-text-color);
+    }
+}

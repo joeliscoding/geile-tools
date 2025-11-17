@@ -12,6 +12,8 @@ let imgWidth = null;
 let imgHeight = null;
 
 let image = null;
+let fileExt = null;
+let dataURL = null;
 
 const tools = {
     autoCrop: ["png", "webp"],
@@ -50,7 +52,9 @@ function displayToolOptions(fileName) {
     const placeholder = document.getElementById("placeholder");
     placeholder.style.display = "none";
 
-    const fileExt = fileName.split(".").pop().toLowerCase();
+    fileExt = fileName.split(".").pop().toLowerCase();
+    if (fileExt === "jpg") dataURL = "image/jpeg";
+    else dataURL = `image/${fileExt}`;
 
     for (let tool in tools) {
         if (tools[tool].includes(fileExt)) {
@@ -65,6 +69,22 @@ function displayToolOptions(fileName) {
     const buttonElement = document.createElement("button");
     buttonElement.innerText = "apply";
     buttonElement.id = "apply-button";
+
+    buttonElement.addEventListener("click", (e) => {
+        e.preventDefault();
+        const selectedAction = document
+            .querySelector('input[name="action"]:checked')
+            .id.split("-")
+            .pop();
+
+        switch (selectedAction) {
+            case "autoCrop":
+                autoCrop();
+                break;
+            default:
+                alert("This feature isn't implemented.");
+        }
+    });
 
     toolsForm.appendChild(buttonElement);
 }
@@ -93,24 +113,6 @@ function createRadioElement(id, name, labelText, disabled) {
 
     return elementWrapper;
 }
-
-function action(event) {
-    event.preventDefault();
-    const selectedAction = document
-        .querySelector('input[name="action"]:checked')
-        .id.split("-")
-        .pop();
-
-    switch (selectedAction) {
-        case "autoCrop":
-            autoCrop();
-            break;
-        default:
-            alert("This feature isn't implemented.");
-    }
-}
-
-toolsForm.addEventListener("submit", action);
 
 function autoCrop() {
     const imgData = ctx.getImageData(0, 0, imgWidth, imgHeight).data;
@@ -160,18 +162,16 @@ function showDownloadOptions() {
 
 downloadButton.addEventListener("click", () => {
     const link = document.createElement("a");
-    link.download = "edited-image.png";
-    link.href = canvas.toDataURL("image/png");
+    link.download = `edited-image.${fileExt}`;
+    link.href = canvas.toDataURL(dataURL);
     link.click();
     link.remove();
 });
 
 resetButton.addEventListener("click", () => {
-    console.log("resetting");
     srcImgContainer.style.display = "flex";
     canvas.style.display = "none";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     placeholder.style.display = "flex";
     downloadOptions.style.display = "none";
-    console.log(createdElements);
 });

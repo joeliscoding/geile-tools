@@ -1,0 +1,61 @@
+:root {
+    /* colors */
+    --primary-color: #000000;
+    --secondary-color: #0c0c0c;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #bbbbbb;
+
+    /* lightmode colors */
+    --lightmode-primary-color: #ffffff;
+    --lightmode-secondary-color: #f8f8f8;
+    --lightmode-primary-text-color: #000000;
+    --lightmode-secondary-text-color: #6f6f6f;
+}
+
+
+/* fonts */
+
+/* jetbrains-mono-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('$lib/fonts/jetbrains-mono-v20-latin-regular.woff2') format('woff2');
+}
+
+
+/* css reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    font-family: "JetBrains Mono", monospace;
+    vertical-align: baseline;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+header, nav {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    height: 100vh;
+}
+
+
+/* global styles */
+
+* {
+    text-transform: lowercase;
+}
+
+body {
+    background-color: var(--lightmode-primary-color);
+}

@@ -53,7 +53,7 @@
 
     /* mobile */
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         #navigation-bar {
             height: 90px;
             width: 100%;

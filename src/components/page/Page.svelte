@@ -19,11 +19,11 @@
 <style lang="scss">
     h1, p {
         color: var(--primary-text-color);
-        text-align: center;
     }
     #layout {
         display: flex;
-        height: 100vh;
+        min-height: 100vh;
+        padding-bottom: 90px; /* navbar height */
     }
     #container {
         flex: 1;
@@ -36,7 +36,7 @@
         margin-bottom: 1.25rem;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         #container {
             margin: 0 auto;
         }

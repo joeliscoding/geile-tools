@@ -100,9 +100,29 @@
     };
 
     const handleDownload = () => {
+        let selectedOption = document
+            .querySelector('input[name="action"]:checked')
+            ?.id.split('-')[0];
+        if (!selectedOption) selectedOption = fileExt;
+        let downloadType = fileType;
+        switch (selectedOption) {
+            case 'png':
+                downloadType = 'image/png';
+                break;
+            case 'jpg':
+                downloadType = 'image/jpeg';
+                break;
+            case 'webp':
+                downloadType = 'image/webp';
+                break;
+        }
+        if (fileExt === 'jpeg') {
+            selectedOption = 'jpg';
+        }
         const link = document.createElement('a');
-        link.download = `edited-image.${fileExt}`;
-        link.href = canvas.toDataURL(fileType);
+        console.log(selectedOption, downloadType);
+        link.download = `edited-image.${selectedOption}`;
+        link.href = canvas.toDataURL(downloadType);
         link.click();
         link.remove();
     };
@@ -117,6 +137,7 @@
 </script>
 
 <div id="wrapper">
+    <canvas id="img-canvas"></canvas>
     {#if state === UPLOAD}
         <div id="src-img-container">
             <form method="dialog" enctype="multipart/form-data">
@@ -124,41 +145,69 @@
             </form>
         </div>
     {/if}
-    <canvas id="img-canvas"></canvas>
-</div>
 
-<div id="tool-form-container">
-    <form id="tools-form">
-        {#if state === UPLOAD}
-            <RadioElement id="placeholder" label="upload an image" disabled={true} />
-        {/if}
-        {#if state === OPTIONS}
-            {#if fileType === 'image/png'}
-                <RadioElement id="autocrop" label="auto crop" />
-            {/if}
-            {#if fileType === 'image/webp'}
-                <RadioElement id="autocrop" label="auto crop" />
-            {/if}
-            {#if fileType === 'image/jpeg'}
-                <!-- No jpeg tools available for now -->
-            {/if}
-            <RadioElement id="coming-soon" label="more coming soon..." disabled={true} />
-            <Button text="apply" id="apply-button" event={(e: Event) => {e.preventDefault(); handleApply();}} />
-        {/if}
-        {#if state === DOWNLOAD}
-            <div id="download-options">
-                <Button text="download" id="download-button" event={handleDownload} />
-                <Button text="reset" id="reset-button" event={handleReset} />
+    <div id="forms-container">
+        <form id="tools-form">
+            <div class="form-element">
+                <h2>Options</h2>
+                {#if state === UPLOAD}
+                    <RadioElement id="placeholder" label="upload an image" disabled={true} />
+                {/if}
+
+                {#if state === OPTIONS}
+                    {#if fileType === 'image/png'}
+                        <RadioElement id="autocrop" label="auto crop" />
+                    {/if}
+                    {#if fileType === 'image/webp'}
+                        <RadioElement id="autocrop" label="auto crop" />
+                    {/if}
+                    {#if fileType === 'image/jpeg'}
+                        <!-- No jpeg tools available for now -->
+                    {/if}
+                    <RadioElement id="coming-soon" label="more coming soon..." disabled={true} />
+                    <Button
+                        text="apply"
+                        id="apply-button"
+                        event={(e: Event) => {
+                            e.preventDefault();
+                            handleApply();
+                        }}
+                    />
+                    <br>
+                    <Button text="reset" id="reset-button" event={handleReset} />
+                {/if}
+
             </div>
+        </form>
+
+        {#if state !== UPLOAD}
+            <form id="convert-form">
+                <div class="form-element">
+                    <h2>File Type</h2>
+                    <RadioElement id="png" label="png" />
+                    <RadioElement id="jpg" label="jpg" />
+                    <RadioElement id="webp" label="webp" />
+                    <Button text="download" id="download-button" event={handleDownload} />
+                </div>
+            </form>
         {/if}
-    </form>
+    </div>
 </div>
 
 <style lang="scss">
+    .form-element {
+        margin-bottom: 2.5rem;
+    }
+    h2 {
+        color: var(--primary-text-color);
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        text-decoration: underline;
+    }
     #wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 5%;
     }
     #src-img-container {
         display: flex;
@@ -166,7 +215,7 @@
         align-items: center;
         justify-content: center;
         aspect-ratio: 16 / 9;
-        width: 75vw;
+        width: 45vw;
         max-width: 700px;
         height: auto;
         background-color: var(--secondary-color);
@@ -175,18 +224,19 @@
         display: none;
         box-sizing: border-box;
         border: 1px solid var(--primary-text-color);
-        width: 75vw;
+        width: 45vw;
         max-width: 700px;
         height: auto;
     }
-    #tool-form-container {
-        width: 75vw;
-        max-width: 700px;
-        margin: 25px auto;
-    }
-    #download-options {
-        display: flex;
-        justify-content: space-between;
+
+    @media (max-width: 600px) {
+        #wrapper {
+            grid-template-columns: 1fr;
+        }
+        #src-img-container,
+        #img-canvas {
+            width: 90vw;
+        }
     }
 
     @media (prefers-color-scheme: light) {

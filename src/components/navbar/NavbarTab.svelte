@@ -26,7 +26,7 @@
         margin: 5px;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         #logo {
             display: none;
         }

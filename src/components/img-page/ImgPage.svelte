@@ -120,7 +120,6 @@
             selectedOption = 'jpg';
         }
         const link = document.createElement('a');
-        console.log(selectedOption, downloadType);
         link.download = `edited-image.${selectedOption}`;
         link.href = canvas.toDataURL(downloadType);
         link.click();

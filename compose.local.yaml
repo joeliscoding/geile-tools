@@ -1,0 +1,9 @@
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: geile-tools-local
+    restart: unless-stopped
+    ports:
+      - "8080:80"

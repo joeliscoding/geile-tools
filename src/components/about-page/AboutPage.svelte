@@ -1,8 +1,8 @@
-            <p>
-                geile.tools is an 
-                <a href="https://github.com/joeliscoding/geile-tools" target="_blank" rel="noopener noreferrer">open-source project</a> 
-                created by joeliscoding. It offers a variety of useful tools designed to simplify everyday tasks.
-            </p>
+<p>
+    geile.tools is an 
+    <a href="https://github.com/joeliscoding/geile-tools" target="_blank" rel="noopener noreferrer">open-source project</a> 
+    created by joeliscoding. It offers a variety of useful tools designed to simplify everyday tasks.
+</p>
 
 <style>
     p {
